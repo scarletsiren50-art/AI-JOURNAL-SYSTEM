@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Test</title>
+    </head>
+    <body>
+        <button onclick="createEntry()">Create Journal</button>
+        <button onclick="getEntries()">Get Entries</button>
+        <button onclick="analyze()">Analyze Emotion</button>
+        <button onclick="getInsights()">Get Insights</button>
+
+        <script>
+            function createEntry(){
+                fetch("http://localhost:5000/api/journal", {
+                    method: "POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        userId: "123",
+                        ambience: "forest",
+                        text: "I felt calm listening to rain"
+                    })
+                })
+                .then(res=>res.json())
+                .then(data=>console.log(data))
+            }
+
+            function getEntries() {
+                fetch("http://localhost:5000/api/journal/123")
+                .then(res=>res.json())
+                .then(data=>console.log(data))
+            }
+
+            function analyze(){
+                fetch("http://localhost:5000/api/journal/analyze",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        text:"I felt calm listening to rain"
+                    })
+                })
+                .then(res=>res.json())
+                .then(data=>console.log(data))
+            }
+
+            function getInsights(){
+                fetch("http://localhost:5000/api/journal/insights/123")
+                .then(res=>res.json())
+                .then(data=>console.log(data))
+            }
+        </script>
+    </body>
+</html>
