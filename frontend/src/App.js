@@ -21,13 +21,13 @@ function App() {
   };
 
   const getEntries = async () => {
-    const res = await axios.get(`/api/journal/${userId}`);
+    const res = await axios.get(`https://ai-journal-system-mq1d.onrender.com/api/journal${userId}`);
     setEntries(res.data);
   };
 
   const analyze = async () => {
     try {
-      const res = await axios.post("/api/journal/analyze", {
+      const res = await axios.post("https://ai-journal-system-mq1d.onrender.com/api/journal/analyze", {
         text: text
       });
 
@@ -38,7 +38,7 @@ function App() {
   };
 
   const getInsights = async () => {
-    const res = await axios.get(`/api/journal/insights/${userId}`);
+    const res = await axios.get(`https://ai-journal-system-mq1d.onrender.com/api/journal/insights${userId}`);
     setInsights(res.data);
   };
 
