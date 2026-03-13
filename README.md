@@ -241,3 +241,12 @@ help users reflect on their emotional experiences.
 
 The project showcases full-stack development skills, scalable
 architecture concepts, and practical API design.
+
+------------------------------------------------------------------------
+
+# Live Demo
+
+https://ai-journal-system.vercel.app
+
+
+
