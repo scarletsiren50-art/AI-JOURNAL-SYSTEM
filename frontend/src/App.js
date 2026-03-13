@@ -10,24 +10,35 @@ function App() {
 
   const userId = "123";
 
-  const createEntry = async () => {
-    await axios.post("/api/journal", {
-      userId: userId,
-      ambience: "forest",
-      text: text
-    });
+  const API_BASE = "https://ai-journal-system-mq1d.onrender.com/api";
 
-    alert("Journal entry saved!");
+  const createEntry = async () => {
+    try {
+      await axios.post(`${API_BASE}/journal`, {
+        userId: userId,
+        ambience: "forest",
+        text: text
+      });
+
+      alert("Journal entry saved!");
+    } catch (error) {
+      console.error(error);
+      alert("Error saving entry");
+    }
   };
 
   const getEntries = async () => {
-    const res = await axios.get(`https://ai-journal-system-mq1d.onrender.com/api/journal${userId}`);
-    setEntries(res.data);
+    try {
+      const res = await axios.get(`${API_BASE}/journal/${userId}`);
+      setEntries(res.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const analyze = async () => {
     try {
-      const res = await axios.post("https://ai-journal-system-mq1d.onrender.com/api/journal/analyze", {
+      const res = await axios.post(`${API_BASE}/journal/analyze`, {
         text: text
       });
 
@@ -38,8 +49,12 @@ function App() {
   };
 
   const getInsights = async () => {
-    const res = await axios.get(`https://ai-journal-system-mq1d.onrender.com/api/journal/insights${userId}`);
-    setInsights(res.data);
+    try {
+      const res = await axios.get(`${API_BASE}/journal/insights/${userId}`);
+      setInsights(res.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -78,7 +93,7 @@ function App() {
       {analysis && (
         <div>
           <p><b>Emotion:</b> {analysis.emotion}</p>
-          <p><b>Keywords:</b> {analysis.keywords.join(", ")}</p>
+          <p><b>Keywords:</b> {analysis.keywords?.join(", ")}</p>
           <p>{analysis.summary}</p>
         </div>
       )}
@@ -90,7 +105,7 @@ function App() {
           <p><b>Total Entries:</b> {insights.totalEntries}</p>
           <p><b>Top Emotion:</b> {insights.topEmotion}</p>
           <p><b>Most Used Ambience:</b> {insights.mostUsedAmbience}</p>
-          <p><b>Recent Keywords:</b> {insights.recentKeywords.join(", ")}</p>
+          <p><b>Recent Keywords:</b> {insights.recentKeywords?.join(", ")}</p>
         </div>
       )}
     </div>
