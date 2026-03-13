@@ -233,6 +233,22 @@ Frontend runs on:
 
 ------------------------------------------------------------------------
 
+## Deployment
+
+Frontend Deployment:
+- Vercel
+
+Backend Deployment:
+- Render
+
+Frontend URL:
+https://ai-journal-system-xi.vercel.app
+
+Backend API:
+https://ai-journal-system-mq1d.onrender.com
+
+-------------------------------------------------------------------------------------
+
 # Future Improvements
 
 Possible enhancements include:
