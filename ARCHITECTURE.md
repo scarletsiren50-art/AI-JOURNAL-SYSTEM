@@ -141,6 +141,41 @@ Possible improvements include:
 
 ------------------------------------------------------------------------
 
+## 4. Deployment Architecture
+
+The project is deployed using two cloud platforms:
+
+Frontend:
+- Hosted on Vercel
+- React application
+
+Backend:
+- Hosted on Render
+- Node.js + Express REST APIs
+
+Database:
+- SQLite database used for storing journal entries.
+
+System Flow:
+
+User Browser
+      ↓
+React Frontend (Vercel)
+      ↓
+Express Backend API (Render)
+      ↓
+SQLite Database
+
+--------------------------------------------------------------------------
+
+## Note
+
+The backend is deployed on Render's free tier.
+
+If backend has been inactive for a while, the first request may take 20-40 seconds to respond while the server wakes up.
+
+-------------------------------------------------------------------------
+
 # Summary
 
 The AI-Assisted Journal System demonstrates a scalable architecture
