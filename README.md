@@ -2,9 +2,13 @@
 
 ------------------------------------------------------------------------
 
-# Live Demo
+## Live Demo
 
-https://ai-journal-system.vercel.app
+Frontend (Vercel):
+https://ai-journal-system-xi.vercel.app
+
+Backend API (Render):
+https://ai-journal-system-mq1d.onrender.com
 
 ------------------------------------------------------------------------
 
