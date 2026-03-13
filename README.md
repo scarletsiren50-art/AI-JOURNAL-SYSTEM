@@ -1,5 +1,13 @@
 # AI-Assisted Journal System
 
+------------------------------------------------------------------------
+
+# Live Demo
+
+https://ai-journal-system.vercel.app
+
+------------------------------------------------------------------------
+
 ## Project Overview
 
 The **AI-Assisted Journal System** is a full-stack web application that
@@ -242,11 +250,6 @@ help users reflect on their emotional experiences.
 The project showcases full-stack development skills, scalable
 architecture concepts, and practical API design.
 
-------------------------------------------------------------------------
-
-# Live Demo
-
-https://ai-journal-system.vercel.app
 
 
 
