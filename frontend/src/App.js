@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+
 function App() {
   const [text, setText] = useState("");
   const [entries, setEntries] = useState([]);
@@ -10,7 +11,7 @@ function App() {
   const userId = "123";
 
   const createEntry = async () => {
-    await axios.post("http://localhost:5000/api/journal", {
+    await axios.post("/api/journal", {
       userId: userId,
       ambience: "forest",
       text: text
@@ -20,57 +21,55 @@ function App() {
   };
 
   const getEntries = async () => {
-    const res = await axios.get(
-      `http://localhost:5000/api/journal/${userId}`
-    );
+    const res = await axios.get(`/api/journal/${userId}`);
     setEntries(res.data);
   };
 
   const analyze = async () => {
-    try{
-      const res = await axios.post(
-        "http://localhost:5000/api/journal/analyze", {
-          text: text
-        }
-      );
+    try {
+      const res = await axios.post("/api/journal/analyze", {
+        text: text
+      });
+
       setAnalysis(res.data);
     } catch (error) {
       console.error(error);
     }
-};
+  };
 
   const getInsights = async () => {
-    const res = await axios.get(
-      `http://localhost:5000/api/journal/insights/${userId}`
-    );
+    const res = await axios.get(`/api/journal/insights/${userId}`);
     setInsights(res.data);
   };
 
   return (
-    <div style={{padding:"40px", fontFamily:"Arial"}}>
+    <div style={{ padding: "40px", fontFamily: "Arial" }}>
       <h1>AI Journal System</h1>
-      <textarea 
-      rows="4"
-      cols="50"
-      placeholder="Write your journal..."
-      value={text}
-      onChange={(e)=>setText(e.target.value)}
+
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="Write your journal..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
-      <br/><br/>
+
+      <br /><br />
+
       <button onClick={createEntry}>Save Entry</button>
       <button onClick={getEntries}>View Entries</button>
       <button onClick={analyze}>Analyze Emotion</button>
       <button onClick={getInsights}>Get Insights</button>
 
-      <hr/>
+      <hr />
 
       <h2>Journal Entries</h2>
 
-      {entries.map(entry => (
+      {entries.map((entry) => (
         <div key={entry.id}>
-          <p><b>Ambience:</b> {entry.ambience} </p>
-          <p> {entry.text} </p>
-          <hr/>
+          <p><b>Ambience:</b> {entry.ambience}</p>
+          <p>{entry.text}</p>
+          <hr />
         </div>
       ))}
 
@@ -78,9 +77,9 @@ function App() {
 
       {analysis && (
         <div>
-          <p><b>Emotion:</b> {analysis.emotion} </p>
-          <p><b>Keywords:</b> {analysis.keywords.join(",")} </p>
-          <p> {analysis.summary} </p>
+          <p><b>Emotion:</b> {analysis.emotion}</p>
+          <p><b>Keywords:</b> {analysis.keywords.join(", ")}</p>
+          <p>{analysis.summary}</p>
         </div>
       )}
 
@@ -88,13 +87,12 @@ function App() {
 
       {insights && (
         <div>
-          <p><b>Total Entries:</b> {insights.totalEntries} </p>
-          <p><b>Top Emotion:</b> {insights.topEmotion} </p>
-          <p><b>Most Used Ambience:</b> {insights.mostUsedAmbience} </p>
-          <p><b>Recent Keywords:</b> {insights.recentKeywords.join(",")} </p>
+          <p><b>Total Entries:</b> {insights.totalEntries}</p>
+          <p><b>Top Emotion:</b> {insights.topEmotion}</p>
+          <p><b>Most Used Ambience:</b> {insights.mostUsedAmbience}</p>
+          <p><b>Recent Keywords:</b> {insights.recentKeywords.join(", ")}</p>
         </div>
       )}
-
     </div>
   );
 }
